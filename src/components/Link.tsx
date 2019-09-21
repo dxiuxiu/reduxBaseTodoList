@@ -1,6 +1,9 @@
 import React from "react";
-
-const Link = ({ active, children, onClick }) => {
+interface IProps {
+  active: boolean;
+  onClick: () => void;
+}
+const Link: React.FunctionComponent<IProps> = ({ active, children, onClick }) => {
   if (active) {
     return <span>{children}</span>;
   }
@@ -16,6 +19,7 @@ const Link = ({ active, children, onClick }) => {
       {children}
     </a>
   );
-};
+}
+
 
 export default Link;

@@ -3,7 +3,7 @@ import { toggleTodo } from "../actions/todos";
 import TodoList from "../components/TodoList";
 
 
-const getVisibleTodos = (todos, filter) => {
+const getVisibleTodos = (todos: any[], filter: string) => {
   switch (filter) {
     case "SHOW_COMPLETED":
       return todos.filter(t => t.completed);
@@ -21,7 +21,7 @@ const getVisibleTodos = (todos, filter) => {
  * 需要先定义 mapStateToProps 这个函数
  * 来指定如何把当前 Redux store state 映射到展示组件的 props 中。
  */
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {
     todos: getVisibleTodos(state.todos, state.visibilityFilter)
   };
@@ -36,9 +36,9 @@ const mapStateToProps = state => {
  * 
  * 
  */
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
   return {
-    onTodoClick: id => {
+    onTodoClick: (id: any) => {
       /**
        * @desc 
        * dispatch(action)

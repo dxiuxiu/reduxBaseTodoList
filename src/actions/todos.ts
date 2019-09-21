@@ -1,8 +1,14 @@
 let nextTodoId = 0;
 
-const initialState = [];
+const initialState: any[] = [];
 
-export const addTodo = text => {
+
+export interface IToDoAction {
+  type: string,
+  id: number | string,
+  text: string
+}
+export const addTodo = (text: string) => {
   return {
     type: "ADD_TODO",
     id: nextTodoId++,
@@ -10,13 +16,12 @@ export const addTodo = text => {
   };
 };
 
-export const toggleTodo = id => {
+export const toggleTodo = (id: number | string) => {
   return {
     type: "TOGGLE_TODO",
     id
   };
 };
-
 
 
 
@@ -31,7 +36,7 @@ export const toggleTodo = id => {
  * 
  * @return state
  */
-export default function reducer(state = initialState, action) {
+export default function reducer(state = initialState, action: IToDoAction) {
   switch (action.type) {
     case "ADD_TODO": // 如果是添加就在原有的 state 中添加新增数据项
       return [

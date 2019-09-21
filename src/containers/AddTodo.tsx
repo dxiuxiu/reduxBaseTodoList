@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { addTodo } from "../actions/todos";
-
-let AddTodo = ({ dispatch }) => {
-  let input;
+import { Dispatch } from 'redux';
+let AddTodo = ({ dispatch }: { dispatch: Dispatch }) => {
+  let input: any;
   return (
     <div>
       <form
@@ -28,7 +28,7 @@ let AddTodo = ({ dispatch }) => {
 };
 
 
+export default connect()(AddTodo)
 
-AddTodo = connect()(AddTodo); // react-redux 的 connect() 方法用于生成容器组件
-
-export default AddTodo;
+// AddTodo = connect()(AddTodo); // react-redux 的 connect() 方法用于生成容器组件
+// export default AddTodo;
