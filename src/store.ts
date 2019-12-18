@@ -1,5 +1,14 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
+/** 
+ * @desc redux-thunk
+ * 处理异步操作
+ */
 import thunkMiddleware from "redux-thunk";
+
+/** 
+ * @desc redux-logger
+ * 日志中间件
+ */
 import { createLogger } from "redux-logger";
 import visibilityFilter from "./actions/visibilityFilter";
 import todos from "./actions/todos";
