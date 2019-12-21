@@ -1,17 +1,5 @@
-import {actionType,listStatus}  from '../constants/todoList'
-
-export interface ITodoList {
-    id: number
-    status?: 'done' | 'willDo'
-    text?: string
-}
-
-export interface IToDoAction {
-    type: string,
-    id: number | string,
-    text?: string
-    status?: string
-}
+import {listStatus}  from '../constants/todoList'
+import {IToDoAction} from '../types/todoList'
 
 
 /** 为 state 定义类型后会报错 Types of parameters 'state' and 'state' are incompatible. */
@@ -39,50 +27,6 @@ const initTodoList: any[] = [
     }
 ]
 
-/** 
- * @desc 将列表状态修改为已完成 
- * 
-*/
-export const willToDone = (id: number) => {
-    return {
-        type: actionType.DONE,
-        id,
-    }
-}
-
-/** 
- * @desc 将列表状态修改为 已完成 
- * 
-*/
-export const doneToWill = (id: number) => {
-    return {
-        type: actionType.WILLDO,
-        id,
-    }
-}
-/** 
- * @desc 将列表状态修改为 已完成 
- * 
-*/
-export const add = (text: string) => {
-    console.log('add action content', text)
-    return {
-        type: actionType.ADD,
-        id: Math.random(),
-        text,
-        status: listStatus.WILLDO
-    }
-}
-/** 
- * @desc 将列表状态修改为 已完成 
- * 
-*/
-export const del = (id: number) => {
-    return {
-        type: actionType.DEL,
-        id,
-    }
-}
 
 export default function reducer(state:any[] = initTodoList, action: IToDoAction) {
     // console.log('reducer')
@@ -118,4 +62,3 @@ export default function reducer(state:any[] = initTodoList, action: IToDoAction)
 
     }
 }
-// export default reducer

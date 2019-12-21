@@ -1,7 +1,8 @@
 import {applyMiddleware,createStore,combineReducers} from 'redux'
 import {createLogger} from 'redux-logger'
 
-import todoList,{ITodoList} from './actions/todoList'
+import todoList from './reducer/todoList'
+import {ITodoList} from './types/todoList'
 
 export interface IStoreState {
     todoList: ITodoList[];

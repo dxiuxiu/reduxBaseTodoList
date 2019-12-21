@@ -5,8 +5,8 @@ import React from 'react'
 import WillDo from '../components/willDo'
 import Done from '../components/done'
 
-import {ITodoList } from '../actions/todoList'
-import {listStatus} from '../actions/constants/todoList'
+import {ITodoList } from '../types/todoList'
+import {listStatus} from '../constants/todoList'
 
 interface IProps {
     todoList:ITodoList[] // todoList 数据
