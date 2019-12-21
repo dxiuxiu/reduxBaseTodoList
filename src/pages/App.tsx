@@ -5,16 +5,15 @@ import React from 'react'
 import WillDo from './components/willDo'
 import Done from './components/done'
 
-import { willDone, del, done, add, ITodoList } from './actions/todolist'
-import store from './store'
-
+import {ITodoList } from './actions/todolist'
+import {listStatus} from './actions/constants/todoList'
 
 interface IProps {
-    todoList:ITodoList[]
-    add:(text:string) => void
-    willDone:(id:number) => void
-    del:(id:number) => void
-    done:(id:number) => void
+    todoList:ITodoList[] // todoList 数据
+    add:(text:string) => void // 添加
+    del:(id:number) => void // 删除
+    doneToWill:(id:number) => void // 状态转化 :  已完成项 -> 待完成项 
+    willToDone:(id:number) => void // 状态转化 :  待完成项 -> 已完成项  
 }
 
 
@@ -29,15 +28,26 @@ export default class App extends React.Component<IProps> {
         this.input.focus();
     }
 
+    /**
+     * @desc 回车事件监听
+     *
+     * @memberof App
+     */
     handleEnterKey = (e: any) => {
         const keyCode = e.nativeEvent.keyCode
         if (keyCode === 13) {
-            this.addEvent(this.input.value)
+            this.add(this.input.value)
             this.input.value = ''
         }
     }
+    
 
-    addEvent = (text:string) => {
+    /**
+     * @desc 添加 todoList 项 
+     *
+     * @memberof App
+     */
+    add = (text:string) => {
         console.log(text)
         // add(text)
         this.props.add(text)
@@ -45,37 +55,67 @@ export default class App extends React.Component<IProps> {
         // console.log(store.getState())
     }
 
+
+    /**
+     * @desc 创建已完成项列表  
+     *
+     * @memberof App
+     */
     createDone = () => {
         return this.props.todoList.map((item) => {
             let result: any
-            if (item.status === 'done') {
-                result = <Done key={item.id} list={item} doneEvent={this.doneEvent} del={this.del} />
+            if (item.status === listStatus.DONE) {
+                result = <Done key={item.id} list={item} doneEvent={this.doneToWill} del={this.del} />
             }
             return result
         })
     }
 
+
+    /**
+     * @desc 创建待完成项列表  
+     *
+     * @memberof App
+     */
     createWillDo = () => {
-        console.log()
         return this.props.todoList.map((item) => {
             let result: any
-            if (item.status === 'willDo') {
-                result = <WillDo key={item.id} list={item} willDoneEvent={this.willDoneEvent} del={this.del} />
+            if (item.status === listStatus.WILLDO) {
+                result = <WillDo key={item.id} list={item} willDoneEvent={this.willToDone} del={this.del} />
             }
             return result
         })
     }
 
-    /** 已完成 -> 即将实现 */
-    doneEvent = (id: number) => {
-        this.props.willDone(id)
+
+     /**
+     * @desc 已完成项 -> 待完成项 
+     *
+     * @memberof App
+     */
+    doneToWill = (id: number) => {
+        this.props.doneToWill(id)
     }
-    willDoneEvent = (id: number) => {
-        this.props.done(id)
+
+
+    /**
+     * @desc 待完成项 -> 已完成项  
+     *
+     * @memberof App
+     */
+    willToDone = (id: number) => {
+        this.props.willToDone(id)
     }
+
+    /**
+     * @desc 删除指定项 
+     *
+     * @memberof App
+     */
     del = (id: number) => {
         this.props.del(id)
     }
+
     render() {
         return (
             <div>

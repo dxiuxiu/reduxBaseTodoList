@@ -1,15 +1,13 @@
 
-import App from './App'
+import App from '../pages/App'
 
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
-import { IStoreState } from './store'
-import { willDone, del, done, add } from './actions/todolist'
+import { IStoreState } from '../store'
+import { willToDone, doneToWill,del, add } from '../actions/todoList'
 
 interface IProps {
 }
-
-
 
 const mapStateToProps = (state: IStoreState, ownProps: IProps) => {
     return {
@@ -19,14 +17,14 @@ const mapStateToProps = (state: IStoreState, ownProps: IProps) => {
 
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: IProps) => {
     return {
-        willDone: (id: number ) => {
-            dispatch(willDone(id))
+        willToDone: (id: number ) => {
+            dispatch(willToDone(id))
         },
         del: (id: number) => {
             dispatch(del(id))
         },
-        done: (id: number) => {
-            dispatch(done(id))
+        doneToWill: (id: number) => {
+            dispatch(doneToWill(id))
         },
         add: (text:string) => {
             console.log('dispatch', text)
