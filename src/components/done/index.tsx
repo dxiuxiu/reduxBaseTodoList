@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ITodoList } from '../../actions/todolist'
+import { ITodoList } from '../../actions/todoList'
 interface IProps {
     list: ITodoList
     doneEvent: (id: number) => void
