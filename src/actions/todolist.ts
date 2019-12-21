@@ -4,6 +4,7 @@ export interface ITodoList {
     status?: 'done' | 'willDo'
     text?: string
 }
+
 export interface IToDoAction {
     type: string,
     id: number | string,
@@ -50,6 +51,7 @@ export const willDone = (id: number) => {
     }
 }
 export const add = (text: string) => {
+    console.log('add action content', text)
     return {
         type: "ADD",
         id: Math.random(),
@@ -65,8 +67,10 @@ export const del = (id: number) => {
 }
 
 export default function reducer(state:any[] = initTodoList, action: IToDoAction) {
+    console.log('reducer')
     switch (action.type) {
         case 'ADD':
+            console.log('ADD')
             return [
                 ...state,
                 {

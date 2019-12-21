@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ITodoList } from '../../App'
+import { ITodoList } from '../../actions/todolist'
 interface IProps {
     list: ITodoList
     doneEvent: (id: number) => void
@@ -8,7 +8,7 @@ interface IProps {
 
 export default function Done(props: IProps) {
 
-    console.log(props)
+    // console.log(props)
     const [check, setCheck] = useState(true)
 
     function del() {
