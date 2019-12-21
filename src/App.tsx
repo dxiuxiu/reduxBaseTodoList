@@ -1,6 +1,7 @@
 import React from 'react'
 
-import WillDo from './components/willDo'
+// import WillDo from './components/willDo'
+import WillDo from './containers/willDo'
 // import Done from './components/done'
 import Done from './containers/done'
 interface IProps {
