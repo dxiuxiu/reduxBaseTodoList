@@ -1,7 +1,11 @@
 import {applyMiddleware,createStore,combineReducers} from 'redux'
 import {createLogger} from 'redux-logger'
 
-import todoList from './actions/todolist'
+import todoList,{ITodoList} from './actions/todolist'
+
+export interface IStoreState {
+    todoList: ITodoList[];
+  }
 const reducer = combineReducers({
     todoList,
 })

@@ -1,7 +1,8 @@
 import React from 'react'
 
 import WillDo from './components/willDo'
-import Done from './components/done'
+// import Done from './components/done'
+import Done from './containers/done'
 interface IProps {
 }
 interface IState {
@@ -65,22 +66,32 @@ export default class App extends React.Component<IProps, IState>{
 
     createDone = () => {
         /** 注意 filter 与 map */
+        // return this.state.todoList.map((item) => {
+        //     if (item.status === 'done') {
+        //         return <Done key={item.id} list={item} doneEvent={this.doneEvent} del={this.del} />
+        //     }
+        // })
         return this.state.todoList.map((item) => {
+            let result:any
             if (item.status === 'done') {
-                return <Done key={item.id} list={item} doneEvent={this.doneEvent} del={this.del} />
+                result =  <Done key={item.id} list={item} doneEvent={this.doneEvent} del={this.del} />
             }
+            return result
         })
     }
 
     createWillDo = () => {
         console.log()
         return this.state.todoList.map((item) => {
+            let result:any
             if (item.status === 'willDo') {
-                return <WillDo key={item.id} list={item} willDoneEvent={this.willDoneEvent} del={this.del} />
+                result = <WillDo key={item.id} list={item} willDoneEvent={this.willDoneEvent} del={this.del} />
             }
+            return result
         })
     }
 
+    /** 已完成 -> 即将实现 */
     doneEvent = (id: number) => {
         const todoList = this.state.todoList
         for (const item of todoList) {
@@ -131,3 +142,5 @@ export default class App extends React.Component<IProps, IState>{
         )
     }
 }
+
+export {}

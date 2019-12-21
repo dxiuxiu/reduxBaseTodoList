@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-
 import { ITodoList } from '../../App'
 interface IProps {
     list: ITodoList
@@ -9,6 +8,7 @@ interface IProps {
 
 export default function Done(props: IProps) {
 
+    console.log(props)
     const [check, setCheck] = useState(true)
 
     function del() {
@@ -31,3 +31,40 @@ export default function Done(props: IProps) {
         </div>
     )
 }
+
+
+
+// import React, { useState } from 'react'
+// import { ITodoList } from '../../App'
+// interface IProps {
+//     list: ITodoList
+//     doneEvent: (id: number) => void
+//     del: (id: number) => void
+// }
+
+// // export default function Done(props: IProps) {
+// const Done: React.FunctionComponent<IProps> = ({ list, doneEvent, del }) => {
+//     const [check, setCheck] = useState(true)
+
+//     function del_() {
+//         del(list.id)
+//     }
+
+//     function change() {
+//         doneEvent(list.id)
+//     }
+
+//     return (
+//         <div>
+//             <input type="checkbox" name=""
+//                 checked={check}
+//                 onClick={() => { setCheck(!check) }}
+//                 onChange={change}
+//                 id={`${list.id}`} />
+//             {list.text}
+//             <button onClick={del_}>删除</button>
+//         </div>
+//     )
+// }
+
+// export default Done

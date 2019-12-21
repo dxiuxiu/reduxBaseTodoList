@@ -1,9 +1,9 @@
 
-// export interface ITodoList {
-//     id: number
-//     status?: 'done' | 'willDo'
-//     text?: string
-// }
+export interface ITodoList {
+    id: number
+    status?: 'done' | 'willDo'
+    text?: string
+}
 export interface IToDoAction {
     type: string,
     id: number | string,
@@ -12,8 +12,29 @@ export interface IToDoAction {
 }
 
 /** 为 state 定义类型后会报错 Types of parameters 'state' and 'state' are incompatible. */
-const todoList: any[] = []
-
+// const initTodoList: any[] = []
+const initTodoList: any[] = [
+    {
+        id: 0.186864004695098,
+        status: "willDo",
+        text: "sbfynhjum1111"
+    },
+    {
+        id: 0.186866666695098,
+        status: "willDo",
+        text: "vxbgym666"
+    },
+    {
+        id: 0.186865004695778,
+        status: "done",
+        text: "5555555"
+    },
+    {
+        id: 0.1861115004695778,
+        status: "done",
+        text: "fffff9999999999"
+    }
+]
 
 export const done = (id: number) => {
     return {
@@ -22,7 +43,7 @@ export const done = (id: number) => {
     }
 }
 
-export const willDon = (id: number) => {
+export const willDone = (id: number) => {
     return {
         type: "WILLDO",
         id,
@@ -43,11 +64,11 @@ export const del = (id: number) => {
     }
 }
 
-export default function reducer(state:any[] = todoList, action: IToDoAction) {
+export default function reducer(state:any[] = initTodoList, action: IToDoAction) {
     switch (action.type) {
         case 'ADD':
             return [
-                ...todoList,
+                ...state,
                 {
                     id: action.id,
                     text: action.text,

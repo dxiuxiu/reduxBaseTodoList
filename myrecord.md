@@ -53,3 +53,18 @@ export default function reducer(state:any[] = todoList, action: IToDoAction) {
     }
 }
 ```
+
+## error2- 'DoneAction' implicitly has type 'any' because it does not have a type annotation and is referenced directly or indirectly in its own initializer.  TS7022
+
+```javascript
+const DoneAction  = connect(mapStateToProps,mapDispatchToProps)(Done)
+export default  DoneAction
+```
+
+[问题详解参考](https://www.520mwx.com/view/52982)
+
+## erroe3
+
+All files must be modules when the '--isolatedModules' flag is provided.
+
+[](https://github.com/Microsoft/TypeScript/issues/15230)
