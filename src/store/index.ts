@@ -1,21 +1,20 @@
 import {applyMiddleware,createStore,combineReducers} from 'redux'
 import {createLogger} from 'redux-logger'
 
-import todoList from './reducer/todoList'
-import {ITodoList} from './types/todoList'
+import todoList from '../reducers/todoList'
 
-export interface IStoreState {
-    todoList: ITodoList[];
-  }
 const reducer = combineReducers({
     todoList,
 })
 
 const logger = createLogger()
 
+// [createstore](https://redux.js.org/api/createstore#createstorereducer-preloadedstate-enhancer)
 const store = createStore(
     reducer,
     applyMiddleware(logger)
 )
 
 export default store
+
+export {}

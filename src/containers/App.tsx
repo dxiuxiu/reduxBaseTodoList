@@ -3,7 +3,7 @@ import App from '../pages/App'
 
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
-import { IStoreState } from '../store'
+import { IStoreState } from '../types/todoList'
 import { willToDone, doneToWill,del, add } from '../actions/todoList'
 
 interface IProps {

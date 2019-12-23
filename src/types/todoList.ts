@@ -11,3 +11,7 @@ export interface IToDoAction {
     text?: string
     status?: string
 }
+
+export interface IStoreState {
+    todoList: ITodoList[];
+}
