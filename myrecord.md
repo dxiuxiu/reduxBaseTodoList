@@ -68,3 +68,75 @@ export default  DoneAction
 All files must be modules when the '--isolatedModules' flag is provided.
 
 [](https://github.com/Microsoft/TypeScript/issues/15230)
+
+## error
+
+×
+Error: It looks like you are passing several store enhancers to createStore(). This is not supported. Instead, compose them together to a single function.
+
+`添加 [redux-devtools-extension](https://github.com/zalmoxisus/redux-devtools-extension) 报错代码`
+```javascript
+import {applyMiddleware,createStore,combineReducers} from 'redux'
+import {createLogger} from 'redux-logger'
+import todoList from '../reducers/todoList'
+const reducer = combineReducers({
+    todoList,
+})
+const logger = createLogger()
+// [createstore](https://redux.js.org/api/createstore#createstorereducer-preloadedstate-enhancer)
+const store = createStore(
+    reducer,
+    (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__(),
+    applyMiddleware(logger)
+)
+
+export default store
+export {}
+```
+
+`添加 [redux-devtools-extension](https://github.com/zalmoxisus/redux-devtools-extension)`
+```javascript
+import {applyMiddleware,createStore,combineReducers,compose} from 'redux'
+import {createLogger} from 'redux-logger'
+
+import todoList from '../reducers/todoList'
+
+const reducer = combineReducers({
+    todoList,
+})
+
+const logger = createLogger()
+
+const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const enhancer = composeEnhancers(
+    applyMiddleware(logger),
+  );
+// [createstore](https://redux.js.org/api/createstore#createstorereducer-preloadedstate-enhancer)
+const store = createStore(reducer,enhancer)
+
+export default store
+
+export {}
+```
+
+`未添加 [redux-devtools-extension](https://github.com/zalmoxisus/redux-devtools-extension)`
+```javascript
+import {applyMiddleware,createStore,combineReducers} from 'redux'
+import {createLogger} from 'redux-logger'
+
+import todoList from '../reducers/todoList'
+
+const reducer = combineReducers({
+    todoList,
+})
+
+const logger = createLogger()
+
+const store = createStore(
+    reducer,
+    applyMiddleware(logger)
+)
+
+export default store
+```

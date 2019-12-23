@@ -9,12 +9,9 @@ const reducer = combineReducers({
 
 const logger = createLogger()
 
-// [createstore](https://redux.js.org/api/createstore#createstorereducer-preloadedstate-enhancer)
 const store = createStore(
     reducer,
     applyMiddleware(logger)
 )
 
 export default store
-
-export {}
